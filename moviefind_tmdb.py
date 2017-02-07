@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 #
+#This script parses the filenames and passes them to TMDB API to find a properly formatted name 
+#It then takes that info and inputs it into a CSV file 
 #
 import os
 import re
@@ -44,8 +46,6 @@ for dirpath, dirnames, files in os.walk("/media/movies"):
                 moviePath = (os.path.join(dirpath, filename))
 		filename = re.sub(r'^([a-zA-Z]+?-)',' ', filename)
                 filename = re.sub('\W', ' ', filename)
-                #filename = re.sub(r"\D(\d{4})\D",' ', filename) #Replaces sets of four numbers with a space
-                #filename = re.sub(r"\D(\d{3})\D",' ', filename) #Replaces sets of three numbers with a space
 		filename = re.sub('.avi',' ', filename.rstrip(), flags=re.IGNORECASE) #all the below replace w space
 		filename = re.sub('.mp4',' ', filename.rstrip(), flags=re.IGNORECASE) 
 		filename = re.sub('.mkv',' ', filename.rstrip(), flags=re.IGNORECASE)
@@ -59,7 +59,7 @@ for dirpath, dirnames, files in os.walk("/media/movies"):
 			movieDetails = getImdbResponse(file)
 	                print(moviePath)
 			movieName = movieDetails 
-			csvFile = open('addons.csv', 'a')
+			csvFile = open('movies.csv', 'a')
 			csvWriter = csv.writer(csvFile)
 			csvData = [[movieName, moviePath]]
 			csvWriter.writerows(csvData)
