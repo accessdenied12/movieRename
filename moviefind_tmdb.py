@@ -14,7 +14,7 @@ import time
 goodExt = (".avi",".m2ts",".mkv",".mp4")
 
 
-#Takes the input passed runs it through the Open Movie Database API and resturns the movie name
+#Takes the input and runs it through the Open Movie Database API and returns the movie name
 def getImdbResponse(title):
 	apiKey = "asdf12341234"
 	titleSplit = title.split()
